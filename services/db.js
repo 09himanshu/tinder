@@ -8,7 +8,9 @@ class Dbservices {
            this.client = new MongoClient(url,{ useNewUrlParser: true, useUnifiedTopology: true })
            this.connect()
            this.db = this.client.db(db_name)
-           this.#collection_names = this.get_collections()
+           this.get_collections()
+           .then(ele => this.#collection_names = ele)
+           .catch(err => console.log(err))
            Dbservices.instance = this
         }
     }
