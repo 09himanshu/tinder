@@ -9,8 +9,9 @@ class Dbservices {
            this.connect()
            this.db = this.client.db(db_name)
            this.get_collections()
-           .then(ele => this.#collection_names = ele)
+           .then(ele => this.#collection_names = ele.map(e => e.name))
            .catch(err => console.log(err))
+           console.log();
            Dbservices.instance = this
         }
     }
@@ -64,11 +65,12 @@ class Dbservices {
     async findOne(collection, filter, projection) {
         try {
             if (!this.#collection_names.includes(collection)) {
-              return { status: false, data: 'No collection found' }
+                return { status: false, data: 'No collection found' }
             }
-
+            
             let data = await this.db.collection(collection).findOne(filter|| {}, projection || {})
-            return data
+            if(!data) return {status: false, data: null}
+            else return {status: true, data}
         } catch (err) {
             console.log(err);
         }
@@ -135,7 +137,7 @@ class Dbservices {
             }
 
             let data = await this.db.collection(collection).deleteOne(filter)
-            return data
+            return { status: true, data }
         } catch (err) {
             console.log(err);
         }
