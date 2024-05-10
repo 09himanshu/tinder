@@ -8,12 +8,17 @@
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "Nodejs",
+    "Fastify",
+    "Jsonwebtoken",
+    "Becrypt",
+    "MongoDB",
+    "node-fetch"
+  ],
+  "author": "Himanshu Sah",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.1614.0",
-    "axios": "^1.6.8",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.5",
     "fastify": "^4.27.0",
